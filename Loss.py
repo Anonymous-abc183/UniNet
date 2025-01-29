@@ -47,6 +47,7 @@ def losses(b, a, mask, T, margin, λ=0.7):
             contra_loss = -torch.log(diag_sim_normal + 1e-8).mean()
             margin_loss_n = F.relu(margin - diag_sim_normal).mean()
         else:
+            contra_loss = 0.0
             margin_loss_n = 0.0
         if abnormal_mask.sum() > 0:
             diag_sim_abnormal = diag_sim[abnormal_mask]
